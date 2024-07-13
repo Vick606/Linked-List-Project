@@ -7,17 +7,22 @@ list.append(2);
 list.append(3);
 list.prepend(0);
 
-console.log('List:', list.toString());
-console.log('Size:', list.size);
-console.log('Head:', list.head.value);
-console.log('Tail:', list.tail.value);
-console.log('At index 2:', list.at(2).value);
+console.log('Initial list:', list.toString());
 
-console.log('Popped value:', list.pop());
-console.log('List after pop:', list.toString());
+list.insertAt(1.5, 2);
+console.log('After inserting 1.5 at index 2:', list.toString());
 
-console.log('Contains 2:', list.contains(2));
-console.log('Contains 4:', list.contains(4));
+const removedValue = list.removeAt(3);
+console.log(`Removed value: ${removedValue}`);
+console.log('After removing index 3:', list.toString());
+try {
+  list.insertAt(10, 10); 
+} catch (error) {
+  console.log('Error caught:', error.message);
+}
 
-console.log('Index of 2:', list.find(2));
-console.log('Index of 4:', list.find(4));
+try {
+  list.removeAt(-1);
+} catch (error) {
+  console.log('Error caught:', error.message);
+}

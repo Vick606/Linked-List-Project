@@ -106,4 +106,46 @@ class Node {
           result += 'null';
           return result;
         }
-      }
+            insertAt(value, index) {
+              if (index < 0 || index > this.size) {
+                throw new Error('Index out of bounds');
+              }
+          
+              const newNode = new Node(value);
+          
+              if (index === 0) {
+                newNode.nextNode = this.headNode;
+                this.headNode = newNode;
+                return;
+              }
+          
+              let current = this.headNode;
+              for (let i = 0; i < index - 1; i++) {
+                current = current.nextNode;
+              }
+          
+              newNode.nextNode = current.nextNode;
+              current.nextNode = newNode;
+            }
+          
+            removeAt(index) {
+              if (index < 0 || index >= this.size) {
+                throw new Error('Index out of bounds');
+              }
+          
+              if (index === 0) {
+                const removedValue = this.headNode.value;
+                this.headNode = this.headNode.nextNode;
+                return removedValue;
+              }
+          
+              let current = this.headNode;
+              for (let i = 0; i < index - 1; i++) {
+                current = current.nextNode;
+              }
+          
+              const removedValue = current.nextNode.value;
+              current.nextNode = current.nextNode.nextNode;
+              return removedValue;
+            }
+          }
